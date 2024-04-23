@@ -33,6 +33,9 @@ class Editor:
         self.tile_list = list(self.assets)
         self.tile_group = 0
         self.tile_variant = 0
+
+        self.clicking = False
+        self.right_clicking = False
         
     def run(self):
         while True:
@@ -47,6 +50,17 @@ class Editor:
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     sys.exit()
+
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    if event.button == 1:
+                        self.clicking = True
+                    if event.button == 3:
+                        self.right_clicking = True
+                    if event.button == 4:
+                        self.tile_group = (self.tile_group - 1) % len(self.tile_list)
+                    if event.button == 5:
+                        self.tile_group = (self.tile_group + 1) % len(self.tile_list)
+
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_LEFT:
                         self.movement[0] = True

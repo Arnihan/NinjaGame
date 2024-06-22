@@ -140,7 +140,7 @@ class Player(PhysicsEntity):
     def __init__(self, game, pos, size):
         super().__init__(game, 'player', pos, size)
         self.air_time = 0
-        self.jumps = 3
+        self.jumps = 4
         self.wall_slide = False
         self.dashing = 0
     
@@ -156,7 +156,7 @@ class Player(PhysicsEntity):
         
         if self.collisions['down']:
             self.air_time = 0
-            self.jumps = 3
+            self.jumps = 4
             
         self.wall_slide = False
         if (self.collisions['right'] or self.collisions['left']) and self.air_time > 4:
@@ -207,13 +207,13 @@ class Player(PhysicsEntity):
             if self.flip and self.last_movement[0] < 0:
                 self.velocity[0] = 3.5
                 self.velocity[1] = -2.5
-                self.air_time = 5
+                self.air_time = 3.5
                 self.jumps = max(0, self.jumps - 1)
                 return True
             elif not self.flip and self.last_movement[0] > 0:
                 self.velocity[0] = -3.5
                 self.velocity[1] = -2.5
-                self.air_time = 5
+                self.air_time = 3.5
                 self.jumps = max(0, self.jumps - 1)
                 return True
                 
